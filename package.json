@@ -8,6 +8,10 @@
     "build": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryzonqz/wepy-plugin-htmltag.git"
+  },
   "keywords": [
     "html",
     "weapp",
