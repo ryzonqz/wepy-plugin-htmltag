@@ -49,7 +49,7 @@ test.wxss
 ## 用法
 1. 安装`wepy-plugin-tag`
 ```bash
-  $ npm i wepy-plugin-tag -S
+  $ npm i wepy-plugin-tag -D
 ```
 
 2. `wepy.config.js`中`plugins`项中添加 `iview:{}`

@@ -43,7 +43,7 @@ var Transform = function () {
 
     _classCallCheck(this, Transform);
 
-    var opt = Ojbect.assign(_config2.default, setting);
+    var opt = Object.assign(_config2.default, setting);
 
     var arr = opt.block.concat(opt.inline);
     var joins = arr.join('|');

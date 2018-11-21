@@ -21,7 +21,7 @@ const closeTag = tag => {
 
 class Transform {
   constructor(setting) {
-    let opt = Ojbect.assign(config, setting)
+    let opt = Object.assign(config, setting)
 
     let arr = opt.block.concat(opt.inline)
     let joins = arr.join('|')
