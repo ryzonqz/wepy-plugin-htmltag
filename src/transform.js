@@ -27,7 +27,7 @@ class TagTransform {
     let joins = arr.join('|')
 
     //style and html regexp
-    this.selectorReg = new RegExp(`(^|[^\\.])(\\b${joins})\\b`, 'g')
+    this.selectorReg = new RegExp(`(^|\\s|~|\\+|>)\\b(${joins})\\b`, 'g')
     this.tagStartReg = new RegExp(`<(${joins})((\\s+(@|\\.|\\:|\\-|\\w)+(="[^"]*")?)*)\\s*(\\/)?>`, 'g')
     this.tagEndReg = new RegExp(`<\\/\s*(${joins})\s*>`, 'g')
 

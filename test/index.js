@@ -1,6 +1,6 @@
 const transform = require('../dist/transform')
 
-let style = 'section{color:white} .div>p{ font-size: .2rem } h1{line-height:2} li+li{float: left}'
+let style = '.par~span{display: block} section{color:white} .div-item>p{ font-size: .2rem } .help_span{top: 0} h1{line-height:2} li+li{float: left}'
 let html =
 '<section submit :style="{{margin-top:\'.2rem\'}}" text="hahah<div></div>1213">\
   <!-- some comment -->\

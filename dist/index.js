@@ -18,7 +18,7 @@ var WepyPluginTag = function () {
 
     _classCallCheck(this, WepyPluginTag);
 
-    this.setting = Object.assign(_config.config, opts);
+    this.setting = Object.assign(_config.setting, opts);
   }
 
   _createClass(WepyPluginTag, [{
