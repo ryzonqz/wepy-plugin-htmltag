@@ -1,7 +1,9 @@
-# wepy-plugin-tag
-> 自动转化html标签为view, text, image标签, 并修改wxss内标签选择器
+# wepy-plugin-htmltag
 
-## 效果
+[wepy](https://github.com/Tencent/wepy) 插件，转化html标签为view, text, image标签, 并修改wxss内标签选择器
+
+# 示例
+
 test.wpy
 ```
 <template>
@@ -44,31 +46,38 @@ test.wxss
 }
 ```
 
-## 用法
-1. 安装
-```bash
+# 安装
+
+```
   $ npm i -D wepy-plugin-tag
 ```
 
-2. `wepy.config.js`中`plugins`项中添加 `htmltag:{}`
+# 使用
+
+wepy.config.js
 ```javascript
 module.exports.plugins = {
-  // ...
-  htmltag: {}
-  // ...
-}
-```
-
-3. 运行项目`wepy build --watch`
-
-##配置
-可以配置块元素和内联元素名称, 分别转化为`view`, `text`, 但`img`只会转成`image`
-```javascript
-module.exports.plugins.htmltag = {
-  filter: /\.(wxml|wxss)$/,
-  config: {
-    block: [/* block elements */],
-    inline: [/* inline elements */]
+  htmltag: {
+    filter: /\.(wxml|wxss)$/,
+    config: {
+      /* block: [...], */
+      /* inline: [...], */
+    }
   }
 }
 ```
+
+# 配置
+
+* filter 监听的文件后缀<br>
+  默认: `/\.(wxml|wxss)$/`
+
+* config 具体配置
+
+  * config.block 块元素数组，转化为`view` 标签<br>
+    默认: ['div'....]
+
+  * config.inline 内联元素数组，转化为`text` 标签<br>
+    默认: ['span'....]
+
+\*注意：`img` 固定转化为`image` 标签
