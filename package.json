@@ -1,6 +1,6 @@
 {
   "name": "wepy-plugin-htmltag",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "transform html tag to weapp tag",
   "main": "dist/index.js",
   "scripts": {

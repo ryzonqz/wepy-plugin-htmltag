@@ -37,11 +37,11 @@ var closeTag = function closeTag(tag) {
   return '';
 };
 
-var Transform = function () {
-  function Transform(setting) {
+var TagTransform = function () {
+  function TagTransform(setting) {
     var _this = this;
 
-    _classCallCheck(this, Transform);
+    _classCallCheck(this, TagTransform);
 
     var opt = Object.assign(_config2.default, setting);
 
@@ -66,7 +66,7 @@ var Transform = function () {
   //replace selector tag
 
 
-  _createClass(Transform, [{
+  _createClass(TagTransform, [{
     key: 'replaceSelector',
     value: function replaceSelector(selector) {
       return selector.replace(this.selectorReg, function (matach, $1, $2) {
@@ -98,11 +98,11 @@ var Transform = function () {
     }
   }]);
 
-  return Transform;
+  return TagTransform;
 }();
 
 var transformSelector = function transformSelector(content, setting) {
-  var transform = new Transform(setting);
+  var tt = new TagTransform(setting);
   var astObj = _css2.default.parse(content);
 
   astObj.stylesheet.rules.forEach(function (rule) {
@@ -119,7 +119,7 @@ var transformSelector = function transformSelector(content, setting) {
         if (rule.selectors && rule.selectors.length) {
           // need transform: selector
           rule.selectors = rule.selectors.map(function (selector) {
-            return transform.replaceSelector(selector);
+            return tt.replaceSelector(selector);
           });
         }
     }
@@ -129,9 +129,9 @@ var transformSelector = function transformSelector(content, setting) {
 };
 
 var transformTag = function transformTag(content, setting) {
-  var transform = new Transform(setting);
+  var tt = new TagTransform(setting);
 
-  return transform.replaceTag(content);
+  return tt.replaceTag(content);
 };
 
 exports.transformSelector = transformSelector;
