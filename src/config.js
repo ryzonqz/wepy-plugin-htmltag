@@ -1,5 +1,5 @@
 const config = {
-  filter: /\.(wxss|wxml)$/
+  filter: /\.(wxml|wxss)$/
 }
 const rule = {
   block: [

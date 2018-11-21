@@ -47,7 +47,7 @@ test.wxss
 ## 用法
 1. 安装
 ```bash
-  $ npm i wepy-plugin-tag -D
+  $ npm i -D wepy-plugin-tag
 ```
 
 2. `wepy.config.js`中`plugins`项中添加 `htmltag:{}`
@@ -65,7 +65,7 @@ module.exports.plugins = {
 可以配置块元素和内联元素名称, 分别转化为`view`, `text`, 但`img`只会转成`image`
 ```javascript
 module.exports.plugins.htmltag = {
-  filter: /\.(wxss|wxml)$/,
+  filter: /\.(wxml|wxss)$/,
   config: {
     block: [/* block elements */],
     inline: [/* inline elements */]

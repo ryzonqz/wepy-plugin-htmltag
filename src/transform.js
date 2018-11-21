@@ -62,7 +62,13 @@ class TagTransform {
   }
 }
 
-const transformSelector = (content, setting) => {
+const transformHtml = (content, setting) => {
+  let tt = new TagTransform(setting)
+
+  return tt.replaceTag(content)
+}
+
+const transformCss = (content, setting) => {
   let tt = new TagTransform(setting)
   let astObj = css.parse(content)
 
@@ -70,11 +76,11 @@ const transformSelector = (content, setting) => {
     switch (rule.type) {
       // recursive invocation while dealing with media queries
       case 'media':
-        transformSelector(rule.rules)
+        transformCss(rule.rules)
         break
       // recursive invocation while dealing with keyframes
       case 'keyframes':
-        transformSelector(rule.keyframes)
+        transformCss(rule.keyframes)
         break
       default:
         if (rule.selectors && rule.selectors.length) {
@@ -87,10 +93,4 @@ const transformSelector = (content, setting) => {
   return css.stringify(astObj)
 }
 
-const transformTag = (content, setting) => {
-  let tt = new TagTransform(setting)
-
-  return tt.replaceTag(content)
-}
-
-export { transformSelector, transformTag }
+export { transformHtml, transformCss }
