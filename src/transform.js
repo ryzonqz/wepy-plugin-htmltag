@@ -19,7 +19,7 @@ const closeTag = tag => {
   return ''
 }
 
-class Transform {
+class TagTransform {
   constructor(setting) {
     let opt = Object.assign(config, setting)
 
@@ -63,7 +63,7 @@ class Transform {
 }
 
 const transformSelector = (content, setting) => {
-  let transform = new Transform(setting)
+  let tt = new TagTransform(setting)
   let astObj = css.parse(content)
 
   astObj.stylesheet.rules.forEach(rule => {
@@ -79,7 +79,7 @@ const transformSelector = (content, setting) => {
       default:
         if (rule.selectors && rule.selectors.length) {
           // need transform: selector
-          rule.selectors = rule.selectors.map(selector => transform.replaceSelector(selector))
+          rule.selectors = rule.selectors.map(selector => tt.replaceSelector(selector))
         }
     }
   })
@@ -88,9 +88,9 @@ const transformSelector = (content, setting) => {
 }
 
 const transformTag = (content, setting) => {
-  let transform = new Transform(setting)
+  let tt = new TagTransform(setting)
 
-  return transform.replaceTag(content)
+  return tt.replaceTag(content)
 }
 
 export { transformSelector, transformTag }

@@ -2,7 +2,6 @@
 > 自动转化html标签为view, text, image标签, 并修改wxss内标签选择器
 
 ## 效果
-
 `test.wpy`
 ```
 <template>
