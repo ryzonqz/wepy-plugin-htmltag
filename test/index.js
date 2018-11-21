@@ -37,7 +37,8 @@ let html2 =
 </div>\
 '
 
-console.log(transform.transformSelector(style))
-console.log(transform.transformTag(html))
+console.log(transform.transformCss(style))
 console.log('\n')
-console.log(transform.transformTag(html2))
+console.log(transform.transformHtml(html))
+console.log('\n')
+console.log(transform.transformHtml(html2))
