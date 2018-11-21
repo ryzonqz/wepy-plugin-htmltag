@@ -2,7 +2,7 @@
 > 自动转化html标签为view, text, image标签, 并修改wxss内标签选择器
 
 ## 效果
-`test.wpy`
+test.wpy
 ```
 <template>
   <div class="container">
@@ -24,8 +24,7 @@
 </style>
 ```
 
-转化后
-test.wxml
+转化后test.wxml
 ```
 <view class="_div container">
   <view class="_ul">
@@ -46,12 +45,12 @@ test.wxss
 ```
 
 ## 用法
-1. 安装`wepy-plugin-tag`
+1. 安装
 ```bash
   $ npm i wepy-plugin-tag -D
 ```
 
-2. `wepy.config.js`中`plugins`项中添加 `iview:{}`
+2. `wepy.config.js`中`plugins`项中添加 `htmltag:{}`
 ```javascript
   plugins: {
     // ...
