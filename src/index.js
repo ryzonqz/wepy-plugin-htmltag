@@ -1,9 +1,9 @@
-import { config } from './config'
+import { setting } from './config'
 import { transformHtml, transformCss } from './transform'
 
 export default class WepyPluginTag {
   constructor(opts = {}) {
-    this.setting = Object.assign(config, opts)
+    this.setting = Object.assign(setting, opts)
   }
   apply(op) {
     let setting = this.setting

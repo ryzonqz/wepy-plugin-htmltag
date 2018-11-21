@@ -1,7 +1,7 @@
-const config = {
+const setting = {
   filter: /\.(wxml|wxss)$/
 }
-const rule = {
+const config = {
   block: [
     'header',
     'footer',
@@ -52,4 +52,4 @@ const rule = {
   ]
 }
 
-export { config, rule }
+export { setting, config }

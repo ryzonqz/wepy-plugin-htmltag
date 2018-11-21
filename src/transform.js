@@ -1,5 +1,5 @@
 import css from 'css'
-import { rule } from './config'
+import { config } from './config'
 
 //adjust class
 const adjustClass = (attrs, tag) => {
@@ -21,7 +21,7 @@ const closeTag = tag => {
 
 class TagTransform {
   constructor(opts = {}) {
-    let opt = Object.assign(rule, opts)
+    let opt = Object.assign(config, opts)
 
     let arr = opt.block.concat(opt.inline)
     let joins = arr.join('|')
