@@ -52,11 +52,11 @@ test.wxss
 
 2. `wepy.config.js`中`plugins`项中添加 `htmltag:{}`
 ```javascript
-  plugins: {
-    // ...
-    htmltag: {}
-    // ...
-  }
+module.exports.plugins = {
+  // ...
+  htmltag: {}
+  // ...
+}
 ```
 
 3. 运行项目`wepy build --watch`
@@ -64,8 +64,11 @@ test.wxss
 ##配置
 可以配置块元素和内联元素名称, 分别转化为`view`, `text`, 但`img`只会转成`image`
 ```javascript
-    htmltag: {
-      block: [/* block elements */],
-      inline: [/* inline elements */]
-    }
+module.exports.plugins.htmltag = {
+  filter: /\.(wxss|wxml)$/,
+  config: {
+    block: [/* block elements */],
+    inline: [/* inline elements */]
+  }
+}
 ```

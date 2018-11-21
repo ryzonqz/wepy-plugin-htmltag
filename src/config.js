@@ -1,4 +1,7 @@
-module.exports = {
+const config = {
+  filter: /\.(wxss|wxml)$/
+}
+const rule = {
   block: [
     'header',
     'footer',
@@ -48,3 +51,5 @@ module.exports = {
     'del'
   ]
 }
+
+export { config, rule }

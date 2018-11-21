@@ -1,4 +1,4 @@
-import config from './config'
+import { config } from './config'
 import { transformSelector, transformTag } from './transform'
 
 export default class WepyPluginTag {
@@ -7,11 +7,13 @@ export default class WepyPluginTag {
   }
   apply(op) {
     let setting = this.setting
-    if (/\.wxss$/.test(op.file)) {
-      op.code = transformSelector(op.code, setting)
-    }
-    if(/\.wxml$/.test(op.file)){
-      op.code = transformTag(op.code, setting)
+    if(setting.filter.test(op.file)){
+      if (/\.wxss$/.test(op.file)) {
+        op.code = transformSelector(op.code, setting.config)
+      }
+      if(/\.wxml$/.test(op.file)){
+        op.code = transformTag(op.code, setting.config)
+      }
     }
 
     op.next()
