@@ -8,11 +8,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _config = require('./config');
 
-var _config2 = _interopRequireDefault(_config);
-
 var _transform = require('./transform');
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -22,18 +18,20 @@ var WepyPluginTag = function () {
 
     _classCallCheck(this, WepyPluginTag);
 
-    this.setting = Object.assign(_config2.default, opts);
+    this.setting = Object.assign(_config.config, opts);
   }
 
   _createClass(WepyPluginTag, [{
     key: 'apply',
     value: function apply(op) {
       var setting = this.setting;
-      if (/\.wxss$/.test(op.file)) {
-        op.code = (0, _transform.transformSelector)(op.code, setting);
-      }
-      if (/\.wxml$/.test(op.file)) {
-        op.code = (0, _transform.transformTag)(op.code, setting);
+      if (setting.filter.test(op.file)) {
+        if (/\.wxss$/.test(op.file)) {
+          op.code = (0, _transform.transformSelector)(op.code, setting.config);
+        }
+        if (/\.wxml$/.test(op.file)) {
+          op.code = (0, _transform.transformTag)(op.code, setting.config);
+        }
       }
 
       op.next();

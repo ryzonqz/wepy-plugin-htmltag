@@ -13,8 +13,6 @@ var _css2 = _interopRequireDefault(_css);
 
 var _config = require('./config');
 
-var _config2 = _interopRequireDefault(_config);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -38,12 +36,14 @@ var closeTag = function closeTag(tag) {
 };
 
 var TagTransform = function () {
-  function TagTransform(setting) {
+  function TagTransform() {
     var _this = this;
+
+    var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
     _classCallCheck(this, TagTransform);
 
-    var opt = Object.assign(_config2.default, setting);
+    var opt = Object.assign(_config.rule, opts);
 
     var arr = opt.block.concat(opt.inline);
     var joins = arr.join('|');
