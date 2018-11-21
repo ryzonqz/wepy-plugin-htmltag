@@ -26,11 +26,11 @@ var WepyPluginTag = function () {
     value: function apply(op) {
       var setting = this.setting;
       if (setting.filter.test(op.file)) {
-        if (/\.wxss$/.test(op.file)) {
-          op.code = (0, _transform.transformSelector)(op.code, setting.config);
-        }
         if (/\.wxml$/.test(op.file)) {
-          op.code = (0, _transform.transformTag)(op.code, setting.config);
+          op.code = (0, _transform.transformHtml)(op.code, setting.config);
+        }
+        if (/\.wxss$/.test(op.file)) {
+          op.code = (0, _transform.transformCss)(op.code, setting.config);
         }
       }
 

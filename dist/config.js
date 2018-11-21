@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var config = {
-  filter: /\.(wxss|wxml)$/
+  filter: /\.(wxml|wxss)$/
 };
 var rule = {
   block: ['header', 'footer', 'article', 'address', 'main', 'aside', 'nav', 'div', 'section', 'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'dl', 'dt', 'dd', 'ol', 'ul', 'li', 'hr', 'pre'],

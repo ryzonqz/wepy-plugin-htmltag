@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.transformTag = exports.transformSelector = undefined;
+exports.transformCss = exports.transformHtml = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -101,7 +101,13 @@ var TagTransform = function () {
   return TagTransform;
 }();
 
-var transformSelector = function transformSelector(content, setting) {
+var transformHtml = function transformHtml(content, setting) {
+  var tt = new TagTransform(setting);
+
+  return tt.replaceTag(content);
+};
+
+var transformCss = function transformCss(content, setting) {
   var tt = new TagTransform(setting);
   var astObj = _css2.default.parse(content);
 
@@ -109,11 +115,11 @@ var transformSelector = function transformSelector(content, setting) {
     switch (rule.type) {
       // recursive invocation while dealing with media queries
       case 'media':
-        transformSelector(rule.rules);
+        transformCss(rule.rules);
         break;
       // recursive invocation while dealing with keyframes
       case 'keyframes':
-        transformSelector(rule.keyframes);
+        transformCss(rule.keyframes);
         break;
       default:
         if (rule.selectors && rule.selectors.length) {
@@ -128,11 +134,5 @@ var transformSelector = function transformSelector(content, setting) {
   return _css2.default.stringify(astObj);
 };
 
-var transformTag = function transformTag(content, setting) {
-  var tt = new TagTransform(setting);
-
-  return tt.replaceTag(content);
-};
-
-exports.transformSelector = transformSelector;
-exports.transformTag = transformTag;
+exports.transformHtml = transformHtml;
+exports.transformCss = transformCss;
