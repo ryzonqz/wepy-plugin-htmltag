@@ -13,11 +13,9 @@ const adjustClass = (attrs, tag) => {
 }
 
 //some tag need new close
-//wepy对于空标签对会省略成<span/>这样
 const closeTag = (match, tag, replaceTag) => {
-  if (tag === 'hr') return '</view>'
-  if (tag === 'img') return '</image>'
-  if(/\/>$/.test(match)) return `</${replaceTag}>`
+  //wepy对于空标签对会省略成<span/>这样
+  if(['hr', 'br','img'].includes(tag) || /\/>$/.test(match)) return `</${replaceTag}>`
   return ''
 }
 

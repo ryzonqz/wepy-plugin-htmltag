@@ -41,6 +41,7 @@ let html2 =
 let html3 = 
 '<div class="order-result">\
   <i class="result-success"/>\
+  <hr><br><img>\
   <dl>\
     <dt>已成功提交需求</dt>\
     <dd>{{siteConfig.siteName}}顾问将会与您联系\
