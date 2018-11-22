@@ -29,9 +29,11 @@ var adjustClass = function adjustClass(attrs, tag) {
 };
 
 //some tag need new close
-var closeTag = function closeTag(tag) {
+//wepy对于空标签对会省略成<span/>这样
+var closeTag = function closeTag(match, tag, replaceTag) {
   if (tag === 'hr') return '</view>';
   if (tag === 'img') return '</image>';
+  if (/\/>$/.test(match)) return '</' + replaceTag + '>';
   return '';
 };
 
@@ -53,7 +55,7 @@ var TagTransform = function () {
     this.tagStartReg = new RegExp('<(' + joins + ')((\\s+(@|\\.|\\:|\\-|\\w)+(="[^"]*")?)*)\\s*(\\/)?>', 'g');
     this.tagEndReg = new RegExp('<\\/(' + joins + ')>', 'g');
 
-    this.weTags = {};
+    this.weTags = {}; //方便快速查找
     opt.block.forEach(function (t) {
       return _this.weTags[t] = 'view';
     });
@@ -83,7 +85,8 @@ var TagTransform = function () {
 
       return html.replace(this.tagStartReg, function (match, $1, $2) {
         if ($1 === 'br') return '<text>\\n</text>';
-        return '<' + _this2.weappTag($1) + adjustClass($2, $1) + '>' + closeTag($1);
+        var wetag = _this2.weappTag($1);
+        return '<' + wetag + adjustClass($2, $1) + '>' + closeTag(match, $1, wetag);
       }).replace(this.tagEndReg, function (match, $1) {
         return '</' + _this2.weappTag($1) + '>';
       });

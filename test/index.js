@@ -40,7 +40,7 @@ let html2 =
 
 let html3 = 
 '<div class="order-result">\
-  <i class="result-success"></i>\
+  <i class="result-success"/>\
   <dl>\
     <dt>已成功提交需求</dt>\
     <dd>{{siteConfig.siteName}}顾问将会与您联系\

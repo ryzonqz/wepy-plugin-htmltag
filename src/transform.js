@@ -13,9 +13,11 @@ const adjustClass = (attrs, tag) => {
 }
 
 //some tag need new close
-const closeTag = tag => {
+//wepy对于空标签对会省略成<span/>这样
+const closeTag = (match, tag, replaceTag) => {
   if (tag === 'hr') return '</view>'
   if (tag === 'img') return '</image>'
+  if(/\/>$/.test(match)) return `</${replaceTag}>`
   return ''
 }
 
@@ -31,7 +33,7 @@ class TagTransform {
     this.tagStartReg = new RegExp(`<(${joins})((\\s+(@|\\.|\\:|\\-|\\w)+(="[^"]*")?)*)\\s*(\\/)?>`, 'g')
     this.tagEndReg = new RegExp(`<\\/(${joins})>`, 'g')
 
-    this.weTags = {}
+    this.weTags = {} //方便快速查找
     opt.block.forEach(t => (this.weTags[t] = 'view'))
     opt.inline.forEach(t => (this.weTags[t] = 'text'))
     if (this.weTags.img) this.weTags.img = 'image'
@@ -49,7 +51,8 @@ class TagTransform {
     return html
       .replace(this.tagStartReg, (match, $1, $2) => {
         if ($1 === 'br') return '<text>\\n</text>'
-        return '<' + this.weappTag($1) + adjustClass($2, $1) + '>' + closeTag($1)
+        let wetag = this.weappTag($1)
+        return '<' + wetag + adjustClass($2, $1) + '>' + closeTag(match, $1, wetag)
       })
       .replace(this.tagEndReg, (match, $1) => {
         return '</' + this.weappTag($1) + '>'
@@ -60,6 +63,7 @@ class TagTransform {
   weappTag(tag) {
     return this.weTags[tag]
   }
+
 }
 
 const transformHtml = (content, setting) => {
