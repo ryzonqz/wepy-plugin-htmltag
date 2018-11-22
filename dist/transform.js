@@ -51,7 +51,7 @@ var TagTransform = function () {
     //style and html regexp
     this.selectorReg = new RegExp('(^|\\s|~|\\+|>)\\b(' + joins + ')\\b', 'g');
     this.tagStartReg = new RegExp('<(' + joins + ')((\\s+(@|\\.|\\:|\\-|\\w)+(="[^"]*")?)*)\\s*(\\/)?>', 'g');
-    this.tagEndReg = new RegExp('<\\/s*(' + joins + ')s*>', 'g');
+    this.tagEndReg = new RegExp('<\\/(' + joins + ')>', 'g');
 
     this.weTags = {};
     opt.block.forEach(function (t) {
@@ -82,7 +82,7 @@ var TagTransform = function () {
       var _this2 = this;
 
       return html.replace(this.tagStartReg, function (match, $1, $2) {
-        if ($1 === 'br') return '<text>\n</text>';
+        if ($1 === 'br') return '<text>\\n</text>';
         return '<' + _this2.weappTag($1) + adjustClass($2, $1) + '>' + closeTag($1);
       }).replace(this.tagEndReg, function (match, $1) {
         return '</' + _this2.weappTag($1) + '>';

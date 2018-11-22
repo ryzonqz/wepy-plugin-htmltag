@@ -29,7 +29,7 @@ class TagTransform {
     //style and html regexp
     this.selectorReg = new RegExp(`(^|\\s|~|\\+|>)\\b(${joins})\\b`, 'g')
     this.tagStartReg = new RegExp(`<(${joins})((\\s+(@|\\.|\\:|\\-|\\w)+(="[^"]*")?)*)\\s*(\\/)?>`, 'g')
-    this.tagEndReg = new RegExp(`<\\/\s*(${joins})\s*>`, 'g')
+    this.tagEndReg = new RegExp(`<\\/(${joins})>`, 'g')
 
     this.weTags = {}
     opt.block.forEach(t => (this.weTags[t] = 'view'))
@@ -48,7 +48,7 @@ class TagTransform {
   replaceTag(html) {
     return html
       .replace(this.tagStartReg, (match, $1, $2) => {
-        if ($1 === 'br') return '<text>\n</text>'
+        if ($1 === 'br') return '<text>\\n</text>'
         return '<' + this.weappTag($1) + adjustClass($2, $1) + '>' + closeTag($1)
       })
       .replace(this.tagEndReg, (match, $1) => {

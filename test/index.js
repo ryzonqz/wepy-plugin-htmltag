@@ -4,6 +4,7 @@ let style = '.par~span{display: block} section{color:white} .div-item>p{ font-si
 let html =
 '<section submit :style="{{margin-top:\'.2rem\'}}" text="hahah<div></div>1213">\
   <!-- some comment -->\
+  <i></i>\
   <div v-html="content"></div>\
   <p class="title"><span>some word</span></p>\
   <div class="desc">\
@@ -37,8 +38,20 @@ let html2 =
 </div>\
 '
 
+let html3 = 
+'<div class="order-result">\
+  <i class="result-success"></i>\
+  <dl>\
+    <dt>已成功提交需求</dt>\
+    <dd>{{siteConfig.siteName}}顾问将会与您联系\
+      <br/>请保持手机畅通</dd>\
+  </dl>\
+</div>'
+
 console.log(transform.transformCss(style))
 console.log('\n')
 console.log(transform.transformHtml(html))
 console.log('\n')
 console.log(transform.transformHtml(html2))
+console.log('\n')
+console.log(transform.transformHtml(html3))
