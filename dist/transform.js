@@ -81,8 +81,7 @@ var TagTransform = function () {
     value: function replaceTag(html) {
       var _this2 = this;
 
-      return html.replace(this.tagStartReg, function (match, $1, $2) {
-        if ($1 === 'br') return '<text>\\n</text>';
+      return html.replace(/(\/)?<br(\/)?>/g, '<text>\\n</text>').replace(this.tagStartReg, function (match, $1, $2) {
         var wetag = _this2.weappTag($1);
         return '<' + wetag + adjustClass($2, $1) + '>' + closeTag(match, $1, wetag);
       }).replace(this.tagEndReg, function (match, $1) {

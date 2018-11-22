@@ -47,8 +47,8 @@ class TagTransform {
   //replace html tag
   replaceTag(html) {
     return html
+      .replace(/(\/)?<br(\/)?>/g, '<text>\\n</text>')
       .replace(this.tagStartReg, (match, $1, $2) => {
-        if ($1 === 'br') return '<text>\\n</text>'
         let wetag = this.weappTag($1)
         return '<' + wetag + adjustClass($2, $1) + '>' + closeTag(match, $1, wetag)
       })

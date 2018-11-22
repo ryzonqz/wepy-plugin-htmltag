@@ -80,4 +80,4 @@ module.exports.plugins = {
   * config.inline 内联元素数组，转化为`text` 标签<br>
     默认: ['span'....]
 
-\*注意：`img`固定转化为`image`, `<br>`固定转化为`<text>\n</text>`
+\*注意：`img`固定转化为`image`, `<br>`固定转化为`<text>\n</text>`, 配置内只影响是否转换
