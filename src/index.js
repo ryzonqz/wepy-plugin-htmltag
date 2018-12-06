@@ -7,7 +7,7 @@ export default class WepyPluginTag {
   }
   apply(op) {
     let setting = this.setting
-    if (setting.filter.test(op.file)) {
+    if (op.code && setting.filter.test(op.file)) {
       if (/\.wxml$/.test(op.file)) {
         op.code = transformHtml(op.code, setting.config)
       }
